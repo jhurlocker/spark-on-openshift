@@ -1,7 +1,7 @@
 apiVersion: sparkoperator.k8s.io/v1beta2
 kind: SparkApplication
 metadata:
-  name: shk-app
+  name: shk-app2
 spec:
   type: Python
   sparkVersion: 3.3.0
@@ -29,25 +29,13 @@ spec:
       type: spark-application
     env:
       - name: S3_ENDPOINT_URL
-        valueFrom:
-          configMapKeyRef:
-            name: spark-demo
-            key: BUCKET_HOST
+        value: 'minio-ml-workshop-opendatahub.apps-crc.testing'
       - name: BUCKET_NAME
-        valueFrom:
-          configMapKeyRef:
-            name: spark-demo
-            key: BUCKET_NAME
+        value: 'spark-demo'
       - name: AWS_ACCESS_KEY_ID
-        valueFrom:
-          secretKeyRef:
-            name: spark-demo
-            key: AWS_ACCESS_KEY_ID
+        value: 'minio'
       - name: AWS_SECRET_ACCESS_KEY
-        valueFrom:
-          secretKeyRef:
-            name: spark-demo
-            key: AWS_SECRET_ACCESS_KEY
+        value: 'minio123'
     cores: 1
     coreLimit: "1"
     volumeMounts:
@@ -65,4 +53,3 @@ spec:
     prometheus:
       jmxExporterJar: "/prometheus/jmx_prometheus_javaagent-0.17.0.jar"
       portName: 'tcp-prometheus'
-  
