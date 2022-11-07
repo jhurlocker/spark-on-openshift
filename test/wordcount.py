@@ -11,9 +11,9 @@ if __name__ == "__main__":
         .appName("PythonWordCount")\
         .getOrCreate()
 
-    s3_endpoint_url = 'minio-ml-workshop-opendatahub.apps-crc.testing'
-    s3_access_key_id = 'minio'
-    s3_secret_access_key = 'minio123'
+    s3_endpoint_url = os.environ['S3_ENDPOINT_URL']
+    s3_access_key_id = os.environ['AWS_ACCESS_KEY_ID']
+    s3_secret_access_key = os.environ['AWS_SECRET_ACCESS_KEY']
     s3_bucket = 'spark-demo'
 
     hadoopConf = spark.sparkContext._jsc.hadoopConfiguration()
