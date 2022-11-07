@@ -21,7 +21,7 @@ if __name__ == "__main__":
     hadoopConf.set("fs.s3a.access.key", s3_access_key_id)
     hadoopConf.set("fs.s3a.secret.key", s3_secret_access_key)
     hadoopConf.set("fs.s3a.path.style.access", "true")
-    hadoopConf.set("fs.s3a.connection.ssl.enabled", "false")
+    hadoopConf.set("fs.s3a.connection.ssl.enabled", "true")
 
     text_file = spark.sparkContext.textFile("s3a://" + s3_bucket + "/shakespeare.txt") \
                 .flatMap(lambda line: line.split(" ")) \
